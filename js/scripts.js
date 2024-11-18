@@ -17,18 +17,27 @@ function addToDisplay(value) {
 function calculate() {
     const display = document.getElementById('display');
     let expression = display.innerText;
-    
+
+    // Substitui a vírgula por ponto para facilitar a operação aritmética
+    expression = expression.replace(',', '.');
+
     // Substitui os símbolos '×' e '÷' por operadores matemáticos válidos
     expression = expression.replace('×', '*').replace('÷', '/');
-    
-    // Agora, realiza a operação como um todo
+
+    // Tenta realizar a operação de cálculo
     try {
-        let result = eval(expression);
-        
-        // Exibe o resultado, arredondando para inteiro (sem casas decimais)
-        display.innerText = Math.round(result);  // Arredonda para um inteiro
+        // Usa o construtor Function para avaliar a expressão, garantindo que seja feito o cálculo correto
+        let result = new Function('return ' + expression)();
+
+        // Arredonda o resultado para 2 casas decimais
+        result = result.toFixed(2);
+
+        // Converte de volta para vírgula para exibir corretamente
+        display.innerText = result.replace('.', ',');
+
     } catch (error) {
-        display.innerText = 'Error'; // Exibe erro se a expressão for inválida
+        // Se houver algum erro na expressão, exibe 'Error'
+        display.innerText = 'Error';
     }
 }
 
@@ -132,7 +141,7 @@ let clearTimer;
 // Evento de mouse down (pressionar e segurar)
 clearBtn.addEventListener('mousedown', () => {
     if (clearBtn.innerText === '⌫') {
-        clearTimer = setInterval(deleteAll, 700); // Apaga todo o conteúdo a cada 1000ms (1 segundo)
+        clearTimer = setInterval(deleteAll, 700); // Apaga todo o conteúdo a cada 700ms (0.7 segundos)
     }
 });
 
@@ -144,7 +153,7 @@ clearBtn.addEventListener('mouseup', () => {
 // Também adiciona os eventos para dispositivos móveis (touch)
 clearBtn.addEventListener('touchstart', () => {
     if (clearBtn.innerText === '⌫') {
-        clearTimer = setInterval(deleteAll, 700); // Apaga todo o conteúdo a cada 1000ms (1 segundo)
+        clearTimer = setInterval(deleteAll, 700); // Apaga todo o conteúdo a cada 700ms (0.7 segundos)
     }
 });
 
