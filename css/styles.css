@@ -112,12 +112,6 @@ body {
     background-color: #8c8c8c;  /* Cor de hover ao ser clicado */
 }
 
-.btn.wide {
-    grid-column: span 2;
-    border-radius: 30px;
-    width: 100%;
-}
-
 .buttons .btn {
     flex: 1;
     height: 60px; /* Tamanho dos botões */
@@ -125,7 +119,9 @@ body {
 
 /* Botão Clear (AC/⌫) */
 #clear-btn {
-    grid-column: span 1;
+    grid-column: span 2;
+    border-radius: 30px;
+    width: 100%;
 }
 
 .icon-img {

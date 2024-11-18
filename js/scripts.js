@@ -21,28 +21,14 @@ function calculate() {
     // Substitui os símbolos '×' e '÷' por operadores matemáticos válidos
     expression = expression.replace('×', '*').replace('÷', '/');
     
-    // Corrige a operação de porcentagem: número - ou + porcentagem
-    expression = expression.replace(/(\d+)(%)/g, (match, number) => {
-        return `(${number} * 0.01)`; // Agora multiplica o número por 0.01 (porcentagem)
-    });
-
-    // Ajusta a operação de subtração ou adição com porcentagem corretamente
-    expression = expression.replace(/(\d+)([\+\-\×\÷])(\d+)%/g, (match, num1, operator, num2) => {
-        // Se for uma operação de subtração ou adição com porcentagem
-        let percentage = num2 * 0.01 * num1;
-        if (operator === '+') {
-            return `(${num1} + ${percentage})`; // Adiciona a porcentagem
-        } else if (operator === '-') {
-            return `(${num1} - ${percentage})`; // Subtrai a porcentagem
-        }
-    });
-
+    // Agora, realiza a operação como um todo
     try {
-        // Realiza o cálculo e exibe o resultado
-        display.innerText = eval(expression).toString();
+        let result = eval(expression);
+        
+        // Exibe o resultado, arredondando para inteiro (sem casas decimais)
+        display.innerText = Math.round(result);  // Arredonda para um inteiro
     } catch (error) {
-        // Caso haja um erro no cálculo, exibe 'Error'
-        display.innerText = 'Error'; 
+        display.innerText = 'Error'; // Exibe erro se a expressão for inválida
     }
 }
 
@@ -121,9 +107,6 @@ function handleKeyboardInput(event) {
     } else if (key === '/') {
         addToDisplay('÷');
         simulateButtonClick('÷'); // Simula o click no botão
-    } else if (key === '%') {
-        addToDisplay('%');
-        simulateButtonClick('%'); // Simula o click no botão
     } else if (key === ',') {
         addToDisplay(',');
         simulateButtonClick(','); // Simula o click no botão
