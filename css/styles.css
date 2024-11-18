@@ -1,0 +1,170 @@
+/* Reset Básico */
+body {
+    margin: 0;
+    font-family: 'SF Pro', Arial, sans-serif;
+    background-color: #ffffff; /* Fundo branco */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Calculadora */
+.calculator {
+    width: 320px;
+    background-color: #000; /* Fundo preto para a calculadora */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+    position: relative; /* Permite o posicionamento do botão de histórico dentro da calculadora */
+}
+
+/* Botão de Histórico */
+#history-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #2d2d2d;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    height: 40px;
+    width: 40px;
+}
+
+#history-btn:active {
+    background-color: #737373;  /* Cor de hover ao ser clicado */
+}
+
+#history-btn .icon-img {
+    width: 60%;  /* Ajuste o tamanho conforme necessário */
+    pointer-events: none; /* Permite clicar no botão sem interferir na imagem */
+}
+
+/* Display */
+.display {
+    color: #fff;
+    text-align: right;
+    padding: 80px 20px 20px; /* Ajusta o padding para mover o texto mais para baixo */
+    font-size: 2rem;
+    border-bottom: none; /* Remove a linha separadora */
+    height: 40px; /* Altura fixa para o display */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end; /* Alinha o texto mais para baixo */
+}
+
+/* Botões */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; /* Espaço entre os botões */
+    padding: 20px;
+    background-color: #000; /* Fundo preto para os botões */
+}
+
+.btn {
+    background-color: #2d2d2d;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 25px;
+}
+
+/* Estado quando o botão é pressionado (clicado) */
+.btn:active, .btn.active {
+    background-color: #737373;  /* Cor de hover ao ser clicado */
+}
+
+/* Estilização para os botões de operação (como +, -, x, ÷) */
+.btn.orange {
+    background-color: #ff9500;
+    color: #fff;
+    font-size: 28px; /* Aumente o tamanho dos operadores */
+}
+
+.btn.orange:active, .btn.orange.active {
+    background-color: #e08900;  /* Cor de hover ao ser clicado */
+}
+
+/* Estilização para o botão clear (AC/⌫) */
+.btn.gray {
+    background-color: #a5a5a5;
+    color: #000;
+}
+
+.btn.gray:active, .btn.gray.active {
+    background-color: #8c8c8c;  /* Cor de hover ao ser clicado */
+}
+
+.btn.wide {
+    grid-column: span 2;
+    border-radius: 30px;
+    width: 100%;
+}
+
+.buttons .btn {
+    flex: 1;
+    height: 60px; /* Tamanho dos botões */
+}
+
+/* Botão Clear (AC/⌫) */
+#clear-btn {
+    grid-column: span 1;
+}
+
+.icon-img {
+    width: 100%; /* Ajuste o tamanho conforme necessário */
+    pointer-events: none; /* Permite clicar no botão sem interferência da imagem */
+}
+
+/* Estilização para o botão #mode-toggle */
+#mode-toggle {
+    background-color: #2d2d2d;  /* Cor de fundo igual aos outros botões */
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 50%; /* Tornar o botão circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Estado quando o botão de modo (mode-toggle) é pressionado (clicado) */
+#mode-toggle:active {
+    background-color: #555; /* Cor de hover ao ser clicado */
+}
+
+#mode-toggle .icon-img {
+    pointer-events: none; /* Permite clicar no botão sem interferir na imagem */
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+    .calculator {
+        width: 90%; /* Ajusta a largura em telas pequenas */
+    }
+
+    .btn {
+        height: 50px;
+        width: 50px;
+        font-size: 1.2rem;
+    }
+}

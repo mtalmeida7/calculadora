@@ -1,0 +1,19 @@
+Operational errors will be reported when:
+
+The calculation format is incorrect 
+The calculation result is outside the allowed range 
+The mathematical operation is illegal, such as division by zero 
+Calculation exceeded numeric or command capacity 
+The calculation argument is in trouble 
+The calculation expression does not include an operator
+
+------------------------------------------------------------------------------------------------
+
+Serão informados erros na operação quando:
+
+O formato do cálculo está incorreto 
+O resultado do cálculo está fora do intervalo permitido 
+A operação matemática é ilegal, como uma divisão por zero 
+O cálculo excedeu a capacidade numérica ou de comandos 
+O argumento do cálculo está com problemas 
+A expressão de cálculo não inclui um operador 

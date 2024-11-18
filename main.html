@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+    <!-- Botões -->
+        <div class="buttons">
+            <button id="clear-btn" class="btn gray" onclick="handleClear()">AC</button>
+            <button class="btn gray" onclick="toggleSign()">+/-</button>
+            <button class="btn gray" onclick="addToDisplay('%')">%</button>
+            <button class="btn orange" onclick="addToDisplay('÷')">÷</button>
+            <button class="btn" onclick="addToDisplay('7')">7</button>
+            <button class="btn" onclick="addToDisplay('8')">8</button>
+            <button class="btn" onclick="addToDisplay('9')">9</button>
+            <button class="btn orange" onclick="addToDisplay('x')">×</button>
+            <button class="btn" onclick="addToDisplay('4')">4</button>
+            <button class="btn" onclick="addToDisplay('5')">5</button>
+            <button class="btn" onclick="addToDisplay('6')">6</button>
+            <button class="btn orange" onclick="addToDisplay('-')">−</button>
+            <button class="btn" onclick="addToDisplay('1')">1</button>
+            <button class="btn" onclick="addToDisplay('2')">2</button>
+            <button class="btn" onclick="addToDisplay('3')">3</button>
+            <button class="btn orange" onclick="addToDisplay('+')">+</button>
+            <button id="mode-toggle" class="btn">
+                <img src="img/calculator.png" alt="Modo" class="icon-img">
+            </button>            
+            <button class="btn" onclick="addToDisplay('0')">0</button>
+            <button class="btn" onclick="addToDisplay(',')">,</button>
+            <button class="btn orange" onclick="calculate()">=</button>
+        </div>
+    </div>
+<script src="js/scripts.js"></script>
+</body>
+</html>
