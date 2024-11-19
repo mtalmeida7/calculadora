@@ -3,11 +3,11 @@ function addToDisplay(value) {
     const display = document.getElementById('display');
     
     // Se o display for '0', substitui-o pelo valor clicado
-    if (display.innerText === '0') {
-        display.innerText = (value === 'x' ? '×' : value === '÷' ? '÷' : value);
+    if (display.textContent === '0') {
+        display.textContent = (value === 'x' ? '×' : value === '÷' ? '÷' : value);
     } else {
         // Caso contrário, adiciona o valor ao display
-        display.innerText += (value === 'x' ? '×' : value === '÷' ? '÷' : value);
+        display.textContent += (value === 'x' ? '×' : value === '÷' ? '÷' : value);
     }
 
     updateClearButton(); // Atualiza o texto do botão ao digitar
@@ -15,29 +15,18 @@ function addToDisplay(value) {
 
 // Função para realizar o cálculo
 function calculate() {
-    const display = document.getElementById('display');
-    let expression = display.innerText;
-
-    // Substitui a vírgula por ponto para facilitar a operação aritmética
-    expression = expression.replace(',', '.');
-
-    // Substitui os símbolos '×' e '÷' por operadores matemáticos válidos
-    expression = expression.replace('×', '*').replace('÷', '/');
-
-    // Tenta realizar a operação de cálculo
     try {
-        // Usa o construtor Function para avaliar a expressão, garantindo que seja feito o cálculo correto
-        let result = new Function('return ' + expression)();
+        const display = document.getElementById('display');
+        expression = display.textContent;
+        // Substitui a vírgula por ponto para facilitar a operação aritmética
+        expression = expression.replaceAll(',', '.');
 
-        // Arredonda o resultado para 2 casas decimais
-        result = result.toFixed(2);
-
-        // Converte de volta para vírgula para exibir corretamente
-        display.innerText = result.replace('.', ',');
+        // Substitui os símbolos '×' e '÷' por operadores matemáticos válidos
+        display.textContent = eval(expression.replace('×', '*').replace('÷', '/')).toFixed(2).replace('.', ',');  
 
     } catch (error) {
         // Se houver algum erro na expressão, exibe 'Error'
-        display.innerText = 'Error';
+        display.textContent = error;
     }
 }
 
@@ -46,7 +35,7 @@ function handleClear() {
     const display = document.getElementById('display');
     const clearBtn = document.getElementById('clear-btn');
     
-    if (clearBtn.innerText === 'AC') {
+    if (clearBtn.textContent === 'AC') {
         clearDisplay(); // Limpa o display inteiro
     } else {
         deleteLast(); // Apaga o último caractere
@@ -57,14 +46,14 @@ function handleClear() {
 function deleteLast() {
     const display = document.getElementById('display');
     // Remove o último caractere ou retorna '0' se o display estiver vazio
-    display.innerText = display.innerText.slice(0, -1) || '0'; 
+    display.textContent = display.textContent.slice(0, -1) || '0'; 
     updateClearButton(); // Atualiza o texto do botão
 }
 
 // Limpa o display completamente
 function deleteAll() {
     const display = document.getElementById('display');
-    display.innerText = '0'; // Reseta o display para '0'
+    display.textContent = '0'; // Reseta o display para '0'
     updateClearButton(); // Atualiza o texto do botão
 }
 
@@ -73,19 +62,19 @@ function updateClearButton() {
     const display = document.getElementById('display');
     const clearBtn = document.getElementById('clear-btn');
     // Se o display for '0', mostra 'AC', caso contrário, mostra '⌫'
-    clearBtn.innerText = display.innerText === '0' ? 'AC' : '⌫';
+    clearBtn.textContent = display.textContent === '0' ? 'AC' : '⌫';
 }
 
 // Limpa o display e mantém o botão em "AC"
 function clearDisplay() {
     const display = document.getElementById('display');
-    display.innerText = '0';
+    display.textContent = '0';
     updateClearButton();
 }
 
 // Função que simula o "click" no botão e adiciona a classe active
 function simulateButtonClick(key) {
-    const button = document.querySelector(`button[data-key="${key}"]`);
+    const button = document.querySelector(button[data-key="${key}"]);
     if (button) {
         button.classList.add('active');
         setTimeout(() => {
@@ -110,7 +99,8 @@ function handleKeyboardInput(event) {
     } else if (key === '-') {
         addToDisplay('-');
         simulateButtonClick('-'); // Simula o click no botão
-    } else if (key === '*') {
+    } else if (key === '*') 
+        {
         addToDisplay('x');  // Corrigido para usar '×'
         simulateButtonClick('×'); // Simula o click no botão
     } else if (key === '/') {
@@ -140,7 +130,7 @@ let clearTimer;
 
 // Evento de mouse down (pressionar e segurar)
 clearBtn.addEventListener('mousedown', () => {
-    if (clearBtn.innerText === '⌫') {
+    if (clearBtn.textContent === '⌫') {
         clearTimer = setInterval(deleteAll, 700); // Apaga todo o conteúdo a cada 700ms (0.7 segundos)
     }
 });
@@ -152,7 +142,7 @@ clearBtn.addEventListener('mouseup', () => {
 
 // Também adiciona os eventos para dispositivos móveis (touch)
 clearBtn.addEventListener('touchstart', () => {
-    if (clearBtn.innerText === '⌫') {
+    if (clearBtn.textContent === '⌫') {
         clearTimer = setInterval(deleteAll, 700); // Apaga todo o conteúdo a cada 700ms (0.7 segundos)
     }
 });
@@ -166,15 +156,15 @@ function toggleSign() {
     const display = document.getElementById('display');
 
     // Pega o valor no display
-    let value = display.innerText;
+    let value = display.textContent;
 
     // Verifica se o valor já está entre parênteses (negativo)
     if (value !== '0' && !value.startsWith('(')) {
         // Se não estiver, coloca entre parênteses e torna negativo
-        display.innerText = `(${ -parseFloat(value) })`;
+        display.textContent = (${ -parseFloat(value) });
     } else if (value.startsWith('(') && value.endsWith(')')) {
         // Se já estiver entre parênteses, remove os parênteses e torna positivo
-        display.innerText = value.slice(1, -1);
+        display.textContent = value.slice(1, -1);
     }
 
     updateClearButton(); // Atualiza o texto do botão ao digitar
