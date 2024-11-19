@@ -74,7 +74,7 @@ function clearDisplay() {
 
 // Função que simula o "click" no botão e adiciona a classe active
 function simulateButtonClick(key) {
-    const button = document.querySelector(button[data-key="${key}"]);
+    const button = document.querySelector(button[data-key]="${key}");
     if (button) {
         button.classList.add('active');
         setTimeout(() => {
@@ -161,7 +161,7 @@ function toggleSign() {
     // Verifica se o valor já está entre parênteses (negativo)
     if (value !== '0' && !value.startsWith('(')) {
         // Se não estiver, coloca entre parênteses e torna negativo
-        display.textContent = (${ -parseFloat(value) });
+        display.textContent = `(${ -parseFloat(value) })`;
     } else if (value.startsWith('(') && value.endsWith(')')) {
         // Se já estiver entre parênteses, remove os parênteses e torna positivo
         display.textContent = value.slice(1, -1);
